@@ -92,9 +92,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if(validateEmail() && validatePass()){
+        //if(validateEmail() && validatePass()){
             startActivity(new Intent(this, MainActivity.class));
-        }
+        //}
     }
 
 }
