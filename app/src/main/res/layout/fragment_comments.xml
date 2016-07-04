@@ -21,17 +21,29 @@
             android:text="COMMENTS"
             android:textColor="@color/colorAccent"/>
 
-        <EditText
-            android:id="@+id/comments_edittext"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="write a comment..."/>
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/comments_send"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="send"/>
+            <EditText
+                android:id="@+id/comments_edittext"
+                android:background="@android:drawable/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="write a comment..."
+                android:layout_toLeftOf="@+id/comments_send"
+                android:layout_toStartOf="@+id/comments_send" />
+
+            <Button
+                android:id="@+id/comments_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="send"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/comments_list"

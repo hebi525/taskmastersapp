@@ -54,7 +54,7 @@ public class CommentsFragment extends BaseFragment {
                     if(editText.getText().toString().length()>0){
                         MyRecyclerAdapter adapter;
                         adapter = (MyRecyclerAdapter)recyclerView.getAdapter();
-                        adapter.addItem(new UserComment(0, "Geralt of Rivia", editText.getText().toString(), "3:35", 0));
+                        adapter.addItem(new UserComment("Geralt of Rivia", editText.getText().toString(), "3:35", 0));
                         recyclerView.smoothScrollToPosition(adapter.getItemCount()-1);
                     }
                 }

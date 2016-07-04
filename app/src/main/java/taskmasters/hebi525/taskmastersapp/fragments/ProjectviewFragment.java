@@ -1,6 +1,5 @@
 package taskmasters.hebi525.taskmastersapp.fragments;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -18,7 +17,6 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import java.util.ArrayList;
 import java.util.List;
 
-import taskmasters.hebi525.taskmastersapp.MainActivity;
 import taskmasters.hebi525.taskmastersapp.R;
 import taskmasters.hebi525.taskmastersapp.fragments.myprojects.AttachmentsFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.myprojects.BaseFragment;
@@ -29,7 +27,7 @@ import taskmasters.hebi525.taskmastersapp.fragments.myprojects.ProjectFragment;
 /**
  * Created by hebi525 on 6/19/2016.
  */
-public class MyProjectsFragment extends Fragment {
+public class ProjectviewFragment extends Fragment {
 
     private AHBottomNavigationViewPager viewPager;
     private MyViewPagerAdapter adapter;
@@ -40,8 +38,8 @@ public class MyProjectsFragment extends Fragment {
     private List<AHBottomNavigationItem> bottomNavigationItems = new ArrayList<>();
 
 
-    public static MyProjectsFragment newInstance() {
-        MyProjectsFragment fragment = new MyProjectsFragment();
+    public static ProjectviewFragment newInstance() {
+        ProjectviewFragment fragment = new ProjectviewFragment();
         return fragment;
     }
 
@@ -98,6 +96,7 @@ public class MyProjectsFragment extends Fragment {
         bottomNavigationItems.add(new AHBottomNavigationItem("Feedback", android.R.drawable.ic_menu_agenda));
     }
 
+    private class MyViewPagerAdapter extends FragmentPagerAdapter{
         private List<BaseFragment> fragmentList = new ArrayList<>();
         private BaseFragment currentFragment;
 
@@ -105,6 +104,7 @@ public class MyProjectsFragment extends Fragment {
             super(fm);
 
             fragmentList.add(ProjectFragment.newInstance());
+            fragmentList.add(AttachmentsFragment.newInstance());
             fragmentList.add(CommentsFragment.newInstance());
             fragmentList.add(FeedbackFragment.newInstance());
         }

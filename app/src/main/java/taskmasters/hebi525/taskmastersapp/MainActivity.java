@@ -1,12 +1,8 @@
 package taskmasters.hebi525.taskmastersapp;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,7 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import taskmasters.hebi525.taskmastersapp.fragments.MyProjectsFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.GroupsFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.ProjectviewFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -80,8 +77,16 @@ public class MainActivity extends AppCompatActivity
 
         //My Projects Selected
         if (id == R.id.nav_myprojects) {
-            if(!(currentFragment instanceof MyProjectsFragment)) {
-                currentFragment = MyProjectsFragment.newInstance();
+            if(!(currentFragment instanceof ProjectviewFragment)) {
+                currentFragment = ProjectviewFragment.newInstance();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.main_fragment_container, currentFragment);
+                transaction.commit();
+            }
+        }
+        else if (id == R.id.nav_groups) {
+            if(!(currentFragment instanceof GroupsFragment)) {
+                currentFragment = GroupsFragment.newInstance();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.main_fragment_container, currentFragment);
                 transaction.commit();
