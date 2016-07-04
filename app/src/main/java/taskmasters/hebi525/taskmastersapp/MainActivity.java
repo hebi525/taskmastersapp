@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import taskmasters.hebi525.taskmastersapp.fragments.GroupsFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.ProjectsFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.ProjectviewFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -77,8 +78,8 @@ public class MainActivity extends AppCompatActivity
 
         //My Projects Selected
         if (id == R.id.nav_myprojects) {
-            if(!(currentFragment instanceof ProjectviewFragment)) {
-                currentFragment = ProjectviewFragment.newInstance();
+            if(!(currentFragment instanceof ProjectsFragment)) {
+                currentFragment = ProjectsFragment.newInstance();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.main_fragment_container, currentFragment);
                 transaction.commit();
@@ -93,7 +94,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        //Log.e("TG", currentFragment.toString());
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

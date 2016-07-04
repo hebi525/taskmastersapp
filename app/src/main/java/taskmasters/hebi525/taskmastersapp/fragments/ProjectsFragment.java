@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -17,24 +16,25 @@ import java.util.List;
 
 import taskmasters.hebi525.taskmastersapp.R;
 import taskmasters.hebi525.taskmastersapp.models.Group;
+import taskmasters.hebi525.taskmastersapp.models.Project;
 
 /**
- * Created by hebi525 on 03-Jul-16.
+ * Created by hebi525 on 05-Jul-16.
  */
-public class GroupsFragment extends Fragment {
+public class ProjectsFragment extends Fragment {
     private RecyclerView recyclerView;
 
-    public static GroupsFragment newInstance() {
-        GroupsFragment fragment = new GroupsFragment();
+    public static ProjectsFragment newInstance() {
+        ProjectsFragment fragment = new ProjectsFragment();
         return fragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_groups, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_projects, container, false);
 
-        recyclerView = (RecyclerView)rootView.findViewById(R.id.groups_list);
+        recyclerView = (RecyclerView)rootView.findViewById(R.id.projects_list);
 
         initRecyclerView();
 
@@ -43,17 +43,22 @@ public class GroupsFragment extends Fragment {
 
     //function to initialise recycler view
     private void initRecyclerView(){
-        MyRecyclerAdapter adapter = new MyRecyclerAdapter(getActivity());
-        adapter.getItemList().add(new Group("Group 1"));
-        adapter.getItemList().add(new Group("Group 2"));
-        adapter.getItemList().add(new Group("Group 3"));
+        MyRecyclerAdapter adapter = new MyRecyclerAdapter(getActivity(), populateList(20));
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
+    //temp function to create project list
+    private ArrayList<Project> populateList(int size){
+        ArrayList<Project> list = new ArrayList<>();
+        for(int i = 0; i < size; i++){
+            list.add(new Project("project"+i, "P100", "hehe"));
+        }
+        return list;
+    }
+
     private static class MyViewHolder extends RecyclerView.ViewHolder{
-        public ImageView imageView;
         public TextView textView;
         public TextView textView1;
         public TextView textView2;
@@ -61,28 +66,28 @@ public class GroupsFragment extends Fragment {
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            imageView = (ImageView)itemView.findViewById(R.id.group_image);
-            textView = (TextView)itemView.findViewById(R.id.group_name);
-            textView1 = (TextView)itemView.findViewById(R.id.group_online_count);
-            textView2 = (TextView)itemView.findViewById(R.id.group_last_activity_time);
+            textView = (TextView)itemView.findViewById(R.id.project_name);
+            textView1 = (TextView)itemView.findViewById(R.id.project_status);
+            textView2 = (TextView)itemView.findViewById(R.id.project_price);
         }
     }
 
     private class MyRecyclerAdapter extends RecyclerView.Adapter<MyViewHolder>{
         private LayoutInflater inflater;
-        private List<Group> itemList = new ArrayList<>();
+        private List<Project> itemList;
 
-        public MyRecyclerAdapter(Context context){
-        this.inflater = LayoutInflater.from(context);
+        public MyRecyclerAdapter(Context context, ArrayList<Project> itemList){
+            this.inflater = LayoutInflater.from(context);
+            this.itemList = itemList;
         }
 
-        public List<Group> getItemList() {
+        public List<Project> getItemList() {
             return itemList;
         }
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View rootView = inflater.inflate(R.layout.item_group, parent, false);
+            View rootView = inflater.inflate(R.layout.item_project, parent, false);
 
             MyViewHolder holder = new MyViewHolder(rootView);
             return holder;
@@ -90,10 +95,9 @@ public class GroupsFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
-            holder.imageView.setImageResource(itemList.get(position).getImageRes());
-            holder.textView.setText(itemList.get(position).getGroupName());
-            holder.textView1.setText("Members online: "+itemList.get(position).getOnlineCount());
-            holder.textView2.setText("Last activity: "+itemList.get(position).getLastActivityTime());
+            holder.textView.setText(itemList.get(position).getProjectName());
+            holder.textView1.setText(itemList.get(position).getProjectStatus());
+            holder.textView2.setText(itemList.get(position).getProjectPrice());
         }
 
         @Override

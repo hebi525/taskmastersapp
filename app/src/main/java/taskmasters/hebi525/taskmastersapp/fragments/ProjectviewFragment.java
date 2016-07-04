@@ -46,7 +46,7 @@ public class ProjectviewFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_myprojects, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_projectview, container, false);
 
         bottomNavigation = (AHBottomNavigation)rootView.findViewById(R.id.myprojects_botnav);
         viewPager = (AHBottomNavigationViewPager)rootView.findViewById(R.id.myprojects_viewpager);
