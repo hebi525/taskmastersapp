@@ -2,6 +2,7 @@ package taskmasters.hebi525.taskmastersapp.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,11 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import taskmasters.hebi525.taskmastersapp.R;
-import taskmasters.hebi525.taskmastersapp.fragments.myprojects.AttachmentsFragment;
-import taskmasters.hebi525.taskmastersapp.fragments.myprojects.BaseFragment;
-import taskmasters.hebi525.taskmastersapp.fragments.myprojects.CommentsFragment;
-import taskmasters.hebi525.taskmastersapp.fragments.myprojects.FeedbackFragment;
-import taskmasters.hebi525.taskmastersapp.fragments.myprojects.ProjectFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.projectview.AttachmentsFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.projectview.CommentsFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.projectview.FeedbackFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.projectview.ProjectFragment;
 
 /**
  * Created by hebi525 on 6/19/2016.
@@ -38,8 +38,9 @@ public class ProjectviewFragment extends Fragment {
     private List<AHBottomNavigationItem> bottomNavigationItems = new ArrayList<>();
 
 
-    public static ProjectviewFragment newInstance() {
+    public static ProjectviewFragment newInstance(Bundle bundle) {
         ProjectviewFragment fragment = new ProjectviewFragment();
+        fragment.setArguments(bundle);
         return fragment;
     }
 

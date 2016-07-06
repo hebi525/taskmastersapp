@@ -13,8 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import taskmasters.hebi525.taskmastersapp.fragments.GroupsFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.HomeFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.ProjectsFragment;
-import taskmasters.hebi525.taskmastersapp.fragments.ProjectviewFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -77,10 +77,20 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //My Projects Selected
-        if (id == R.id.nav_myprojects) {
+        if (id == R.id.nav_home) {
+            if(!(currentFragment instanceof HomeFragment)) {
+                currentFragment = HomeFragment.newInstance();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+                transaction.replace(R.id.main_fragment_container, currentFragment);
+                transaction.commit();
+            }
+        }
+        else if (id == R.id.nav_myprojects) {
             if(!(currentFragment instanceof ProjectsFragment)) {
                 currentFragment = ProjectsFragment.newInstance();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
                 transaction.replace(R.id.main_fragment_container, currentFragment);
                 transaction.commit();
             }
@@ -89,6 +99,7 @@ public class MainActivity extends AppCompatActivity
             if(!(currentFragment instanceof GroupsFragment)) {
                 currentFragment = GroupsFragment.newInstance();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
                 transaction.replace(R.id.main_fragment_container, currentFragment);
                 transaction.commit();
             }

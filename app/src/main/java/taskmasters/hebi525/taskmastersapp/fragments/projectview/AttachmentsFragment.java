@@ -1,4 +1,4 @@
-package taskmasters.hebi525.taskmastersapp.fragments.myprojects;
+package taskmasters.hebi525.taskmastersapp.fragments.projectview;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,9 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
-
 import taskmasters.hebi525.taskmastersapp.R;
+import taskmasters.hebi525.taskmastersapp.fragments.BaseFragment;
 
 /**
  * Created by hebi525 on 6/19/2016.

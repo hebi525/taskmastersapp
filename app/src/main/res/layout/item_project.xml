@@ -5,6 +5,8 @@
     android:paddingRight="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_list_vertical_margin"
     android:paddingBottom="@dimen/activity_list_vertical_margin"
+    android:clickable="true"
+    android:background="@drawable/recycler_selector"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 

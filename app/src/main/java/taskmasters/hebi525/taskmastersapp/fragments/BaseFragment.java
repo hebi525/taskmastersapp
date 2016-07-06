@@ -1,4 +1,4 @@
-package taskmasters.hebi525.taskmastersapp.fragments.myprojects;
+package taskmasters.hebi525.taskmastersapp.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

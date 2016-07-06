@@ -11,40 +11,38 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import taskmasters.hebi525.taskmastersapp.R;
-import taskmasters.hebi525.taskmastersapp.models.Group;
 import taskmasters.hebi525.taskmastersapp.models.Project;
 import taskmasters.hebi525.taskmastersapp.models.RClickListener;
 
 /**
- * Created by hebi525 on 05-Jul-16.
+ * Created by hebi525 on 06-Jul-16.
  */
-public class ProjectsFragment extends Fragment {
+public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
 
-    public static ProjectsFragment newInstance() {
-        ProjectsFragment fragment = new ProjectsFragment();
+    public static HomeFragment newInstance() {
+        HomeFragment fragment = new HomeFragment();
         return fragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_projects, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        recyclerView = (RecyclerView)rootView.findViewById(R.id.projects_list);
+        recyclerView = (RecyclerView)rootView.findViewById(R.id.home_list);
 
         initRecyclerView();
 
         return rootView;
     }
-
     //function to initialise recycler view
     private void initRecyclerView(){
         MyRecyclerAdapter adapter = new MyRecyclerAdapter(getActivity(), populateList(20));
@@ -54,15 +52,7 @@ public class ProjectsFragment extends Fragment {
         recyclerView.addOnItemTouchListener(new MyRecyclerClickListener(getActivity(), new RClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Bundle bundle = new Bundle();
-                bundle.putString("PROJECT_NAME", "project "+position);
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-                        .replace(R.id.main_fragment_container, ProjectviewFragment.newInstance(bundle))
-                        .addToBackStack(null)
-                        .commit();
-
+                //TODO: add grab project dialog here.
             }
 
             @Override
@@ -82,6 +72,7 @@ public class ProjectsFragment extends Fragment {
     }
 
     private static class MyViewHolder extends RecyclerView.ViewHolder{
+        //TODO: add coin icon
         public TextView textView;
         public TextView textView1;
         public TextView textView2;
