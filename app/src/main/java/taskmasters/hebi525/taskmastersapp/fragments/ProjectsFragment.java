@@ -6,19 +6,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import taskmasters.hebi525.taskmastersapp.MyOnItemTouchListener;
 import taskmasters.hebi525.taskmastersapp.R;
-import taskmasters.hebi525.taskmastersapp.models.Group;
 import taskmasters.hebi525.taskmastersapp.models.Project;
 import taskmasters.hebi525.taskmastersapp.models.RClickListener;
 
@@ -51,7 +48,7 @@ public class ProjectsFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.addOnItemTouchListener(new MyRecyclerClickListener(getActivity(), new RClickListener() {
+        recyclerView.addOnItemTouchListener(new MyOnItemTouchListener(getActivity(), new RClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Bundle bundle = new Bundle();
@@ -126,40 +123,6 @@ public class ProjectsFragment extends Fragment {
         @Override
         public int getItemCount() {
             return itemList.size();
-        }
-    }
-
-    private class MyRecyclerClickListener implements RecyclerView.OnItemTouchListener {
-        private GestureDetector gestureDetector;
-        private RClickListener rClickListener;
-
-        public MyRecyclerClickListener(Context context, RClickListener rClickListener){
-            gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener(){
-                @Override
-                public boolean onSingleTapUp(MotionEvent e) {
-                    return true;
-                }
-            });
-            this.rClickListener = rClickListener;
-        }
-
-        @Override
-        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-            View child = rv.findChildViewUnder(e.getX(), e.getY());
-            if(child!=null && rClickListener!=null && gestureDetector.onTouchEvent(e)){
-                rClickListener.onClick(child, rv.getChildPosition(child));
-            }
-            return false;
-        }
-
-        @Override
-        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-        }
-
-        @Override
-        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
         }
     }
 }

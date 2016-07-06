@@ -14,7 +14,9 @@ import android.view.MenuItem;
 
 import taskmasters.hebi525.taskmastersapp.fragments.GroupsFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.HomeFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.IncomeLogsFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.ProjectsFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.ReferralsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -98,6 +100,24 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_groups) {
             if(!(currentFragment instanceof GroupsFragment)) {
                 currentFragment = GroupsFragment.newInstance();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+                transaction.replace(R.id.main_fragment_container, currentFragment);
+                transaction.commit();
+            }
+        }
+        else if (id == R.id.nav_referrals) {
+            if(!(currentFragment instanceof ReferralsFragment)) {
+                currentFragment = ReferralsFragment.newInstance();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+                transaction.replace(R.id.main_fragment_container, currentFragment);
+                transaction.commit();
+            }
+        }
+        else if (id == R.id.nav_income_logs) {
+            if(!(currentFragment instanceof IncomeLogsFragment)) {
+                currentFragment = IncomeLogsFragment.newInstance();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
                 transaction.replace(R.id.main_fragment_container, currentFragment);

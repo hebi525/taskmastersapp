@@ -15,8 +15,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import taskmasters.hebi525.taskmastersapp.MyOnItemTouchListener;
 import taskmasters.hebi525.taskmastersapp.R;
 import taskmasters.hebi525.taskmastersapp.models.Group;
+import taskmasters.hebi525.taskmastersapp.models.RClickListener;
 
 /**
  * Created by hebi525 on 03-Jul-16.
@@ -50,6 +52,23 @@ public class GroupsFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.addOnItemTouchListener(new MyOnItemTouchListener(getActivity(), new RClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Bundle bundle = new Bundle();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+                        .replace(R.id.main_fragment_container, GroupviewFragment.newInstance(bundle))
+                        .addToBackStack(null)
+                        .commit();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
     }
 
     private static class MyViewHolder extends RecyclerView.ViewHolder{

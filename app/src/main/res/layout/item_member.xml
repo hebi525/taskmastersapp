@@ -11,39 +11,33 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/group_image"
+        android:id="@+id/member_image"
+        android:src="@mipmap/ic_launcher"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
 
 
         <TextView
-            android:id="@+id/group_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/group_online_count"
+            android:id="@+id/member_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text" />
+            android:text="memberName"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/group_last_activity_time"
+            android:id="@+id/member_last_activity_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text" />
+            android:text="lastActivity" />
     </LinearLayout>
+
 </LinearLayout>

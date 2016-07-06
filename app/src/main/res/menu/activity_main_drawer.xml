@@ -18,6 +18,14 @@
             android:id="@+id/nav_referrals"
             android:icon="@drawable/ic_menu_manage"
             android:title="Referrals" />
+        <item
+            android:id="@+id/nav_income_logs"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Income Logs" />
+        <item
+            android:id="@+id/nav_withdrawals"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Withdrawals" />
     </group>
 
     <item android:title="Account">

@@ -1,9 +1,7 @@
 package taskmasters.hebi525.taskmastersapp.fragments;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -19,27 +17,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import taskmasters.hebi525.taskmastersapp.R;
+import taskmasters.hebi525.taskmastersapp.fragments.groupview.FilesFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.groupview.ForumsFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.groupview.MembersFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.groupview.StatusFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.projectview.AttachmentsFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.projectview.CommentsFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.projectview.FeedbackFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.projectview.ProjectFragment;
 
 /**
- * Created by hebi525 on 6/19/2016.
+ * Created by hebi525 on 06-Jul-16.
  */
-public class ProjectviewFragment extends Fragment {
+public class GroupviewFragment extends Fragment {
 
     private AHBottomNavigationViewPager viewPager;
     private MyViewPagerAdapter adapter;
     private AHBottomNavigation bottomNavigation;
-    private FloatingActionButton fab;
 
     private BaseFragment currentFragment;
     private List<AHBottomNavigationItem> bottomNavigationItems = new ArrayList<>();
 
 
-    public static ProjectviewFragment newInstance(Bundle bundle) {
-        ProjectviewFragment fragment = new ProjectviewFragment();
+    public static GroupviewFragment newInstance(Bundle bundle) {
+        GroupviewFragment fragment = new GroupviewFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -47,11 +48,10 @@ public class ProjectviewFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_projectview, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_groupview, container, false);
 
-        bottomNavigation = (AHBottomNavigation)rootView.findViewById(R.id.projectview_botnav);
-        viewPager = (AHBottomNavigationViewPager)rootView.findViewById(R.id.projectview_viewpager);
-        fab = (FloatingActionButton)rootView.findViewById(R.id.attachments_fab);
+        bottomNavigation = (AHBottomNavigation)rootView.findViewById(R.id.groupview_botnav);
+        viewPager = (AHBottomNavigationViewPager)rootView.findViewById(R.id.groupview_viewpager);
 
         initBottomNavigationItems();
         initBottomNavigation();
@@ -75,12 +75,6 @@ public class ProjectviewFragment extends Fragment {
                     if(currentFragment!=null){
                         currentFragment.hideAnimate();
                     }
-                    if(position == 1){
-                        fab.show();
-                    }
-                    else{
-                        fab.hide();
-                    }
                     viewPager.setCurrentItem(position, false);
                     currentFragment = adapter.getCurrentFragment();
                     currentFragment.showAnimate();
@@ -92,23 +86,23 @@ public class ProjectviewFragment extends Fragment {
 
     //function to initialise bottom navigation items
     private void initBottomNavigationItems(){
-        bottomNavigationItems.add(new AHBottomNavigationItem("Project", android.R.drawable.ic_menu_info_details));
-        bottomNavigationItems.add(new AHBottomNavigationItem("Attachments", android.R.drawable.ic_menu_gallery));
-        bottomNavigationItems.add(new AHBottomNavigationItem("Comments", android.R.drawable.ic_menu_edit));
-        bottomNavigationItems.add(new AHBottomNavigationItem("Feedback", android.R.drawable.ic_menu_agenda));
+        bottomNavigationItems.add(new AHBottomNavigationItem("Forums", android.R.drawable.ic_menu_info_details));
+        bottomNavigationItems.add(new AHBottomNavigationItem("Status", android.R.drawable.ic_menu_gallery));
+        bottomNavigationItems.add(new AHBottomNavigationItem("Members", android.R.drawable.ic_menu_edit));
+        bottomNavigationItems.add(new AHBottomNavigationItem("Files", android.R.drawable.ic_menu_agenda));
     }
 
-    private class MyViewPagerAdapter extends FragmentPagerAdapter{
+    private class MyViewPagerAdapter extends FragmentPagerAdapter {
         private List<BaseFragment> fragmentList = new ArrayList<>();
         private BaseFragment currentFragment;
 
         public MyViewPagerAdapter(FragmentManager fm) {
             super(fm);
 
-            fragmentList.add(ProjectFragment.newInstance());
-            fragmentList.add(AttachmentsFragment.newInstance());
-            fragmentList.add(CommentsFragment.newInstance());
-            fragmentList.add(FeedbackFragment.newInstance());
+            fragmentList.add(ForumsFragment.newInstance());
+            fragmentList.add(StatusFragment.newInstance());
+            fragmentList.add(MembersFragment.newInstance());
+            fragmentList.add(FilesFragment.newInstance());
         }
 
         @Override
