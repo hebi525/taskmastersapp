@@ -13,4 +13,5 @@
         android:layout_height="wrap_content"
         android:text="ATTACHMENTS"
         android:textColor="@color/colorAccent"/>
+
 </android.support.v4.widget.NestedScrollView>

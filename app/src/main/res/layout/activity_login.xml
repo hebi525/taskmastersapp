@@ -20,9 +20,11 @@
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/et_email"
+            android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"/>
+            android:hint="Email"
+            android:textColorHint="@color/colorAccent"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -34,9 +36,11 @@
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/et_pass"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"/>
+            android:hint="Password"
+            android:textColorHint="@color/colorAccent"/>
 
     </android.support.design.widget.TextInputLayout>
 

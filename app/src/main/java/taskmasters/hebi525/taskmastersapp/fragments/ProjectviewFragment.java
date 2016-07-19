@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,7 @@ public class ProjectviewFragment extends Fragment {
         bottomNavigation.setAccentColor(getResources().getColor(android.R.color.white));
         bottomNavigation.addItems(bottomNavigationItems);
 
-        adapter = new MyViewPagerAdapter(getActivity().getSupportFragmentManager());
+        adapter = new MyViewPagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
 
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
@@ -75,7 +76,7 @@ public class ProjectviewFragment extends Fragment {
                     if(currentFragment!=null){
                         currentFragment.hideAnimate();
                     }
-                    if(position == 1){
+                    if(position == 1){//Attachments Tab
                         fab.show();
                     }
                     else{
@@ -95,7 +96,7 @@ public class ProjectviewFragment extends Fragment {
         bottomNavigationItems.add(new AHBottomNavigationItem("Project", android.R.drawable.ic_menu_info_details));
         bottomNavigationItems.add(new AHBottomNavigationItem("Attachments", android.R.drawable.ic_menu_gallery));
         bottomNavigationItems.add(new AHBottomNavigationItem("Comments", android.R.drawable.ic_menu_edit));
-        bottomNavigationItems.add(new AHBottomNavigationItem("Feedback", android.R.drawable.ic_menu_agenda));
+//        bottomNavigationItems.add(new AHBottomNavigationItem("Feedback", android.R.drawable.ic_menu_agenda));
     }
 
     private class MyViewPagerAdapter extends FragmentPagerAdapter{
@@ -108,7 +109,7 @@ public class ProjectviewFragment extends Fragment {
             fragmentList.add(ProjectFragment.newInstance());
             fragmentList.add(AttachmentsFragment.newInstance());
             fragmentList.add(CommentsFragment.newInstance());
-            fragmentList.add(FeedbackFragment.newInstance());
+//            fragmentList.add(FeedbackFragment.newInstance());
         }
 
         @Override

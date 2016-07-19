@@ -42,7 +42,7 @@ public class CommentsFragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_comments, container, false);
         super.fragmentContainer = (NestedScrollView)rootView.findViewById(R.id.fragment_container);
         recyclerView = (RecyclerView)rootView.findViewById(R.id.comments_list);
-        editText = (EditText)rootView.findViewById(R.id.comments_edittext);
+        editText = (EditText)rootView.findViewById(R.id.comments_comment);
         button = (Button)rootView.findViewById(R.id.comments_send);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +53,7 @@ public class CommentsFragment extends BaseFragment {
                         adapter = (MyRecyclerAdapter)recyclerView.getAdapter();
                         adapter.addItem(new UserComment("Geralt of Rivia", editText.getText().toString(), "3:35", 0));
                         recyclerView.smoothScrollToPosition(adapter.getItemCount()-1);
+                        editText.setText("");
                     }
                 }
             }
@@ -72,7 +73,7 @@ public class CommentsFragment extends BaseFragment {
         }
     }
 
-    static class MyViewHolder extends RecyclerView.ViewHolder{
+    private static class MyViewHolder extends RecyclerView.ViewHolder{
         public ImageView imageView;
         public TextView textView;
         public TextView textView1;

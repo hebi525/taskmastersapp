@@ -1,5 +1,6 @@
 package taskmasters.hebi525.taskmastersapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,23 +12,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
 import taskmasters.hebi525.taskmastersapp.fragments.GroupsFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.HomeFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.IncomeLogsFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.ProjectsFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.ReferralsFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.WithdrawalsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Fragment currentFragment;
+    private ExpandableRelativeLayout expandableRelativeLayout;
+    private Button button;
+    private boolean open = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -38,6 +47,25 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        button = (Button)navigationView.getHeaderView(0).findViewById(R.id.nav_expand);
+        expandableRelativeLayout = (ExpandableRelativeLayout)navigationView.getHeaderView(0).findViewById(R.id.expand_layout);
+        expandableRelativeLayout.setDuration(200);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!open){
+                    button.setCompoundDrawablesWithIntrinsicBounds(0, 0, android.R.drawable.arrow_up_float, 0);
+                    open = true;
+                }
+                else{
+                    button.setCompoundDrawablesWithIntrinsicBounds(0, 0, android.R.drawable.arrow_down_float, 0);
+                    open = false;
+                }
+                expandableRelativeLayout.toggle();
+            }
+        });
     }
 
     @Override
@@ -66,6 +94,10 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+        else if (id == R.id.action_messages) {
+            startActivity(new Intent(getApplicationContext(), MessagesActivity.class));
             return true;
         }
 
@@ -118,6 +150,15 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_income_logs) {
             if(!(currentFragment instanceof IncomeLogsFragment)) {
                 currentFragment = IncomeLogsFragment.newInstance();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+                transaction.replace(R.id.main_fragment_container, currentFragment);
+                transaction.commit();
+            }
+        }
+        else if (id == R.id.nav_withdrawals) {
+            if(!(currentFragment instanceof WithdrawalsFragment)) {
+                currentFragment = WithdrawalsFragment.newInstance();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
                 transaction.replace(R.id.main_fragment_container, currentFragment);
