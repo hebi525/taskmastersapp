@@ -19,12 +19,8 @@ import java.util.List;
 import taskmasters.hebi525.taskmastersapp.R;
 import taskmasters.hebi525.taskmastersapp.fragments.groupview.FilesFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.groupview.ForumsFragment;
-import taskmasters.hebi525.taskmastersapp.fragments.groupview.MembersFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.groupview.GroupMembersFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.groupview.StatusFragment;
-import taskmasters.hebi525.taskmastersapp.fragments.projectview.AttachmentsFragment;
-import taskmasters.hebi525.taskmastersapp.fragments.projectview.CommentsFragment;
-import taskmasters.hebi525.taskmastersapp.fragments.projectview.FeedbackFragment;
-import taskmasters.hebi525.taskmastersapp.fragments.projectview.ProjectFragment;
 
 /**
  * Created by hebi525 on 06-Jul-16.
@@ -65,7 +61,7 @@ public class GroupviewFragment extends Fragment {
         bottomNavigation.setAccentColor(getResources().getColor(android.R.color.white));
         bottomNavigation.addItems(bottomNavigationItems);
 
-        adapter = new MyViewPagerAdapter(getActivity().getSupportFragmentManager());
+        adapter = new MyViewPagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
 
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
@@ -101,7 +97,7 @@ public class GroupviewFragment extends Fragment {
 
             fragmentList.add(ForumsFragment.newInstance());
             fragmentList.add(StatusFragment.newInstance());
-            fragmentList.add(MembersFragment.newInstance());
+            fragmentList.add(GroupMembersFragment.newInstance());
             fragmentList.add(FilesFragment.newInstance());
         }
 

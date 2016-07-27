@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_list_vertical_margin"
+    android:paddingBottom="@dimen/activity_list_vertical_margin"
+    android:clickable="true"
+    android:background="@drawable/recycler_selector"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/recent_message_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"/>
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/recent_message_name"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="contactName"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/recent_message_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/lorem1"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</LinearLayout>

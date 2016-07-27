@@ -18,6 +18,7 @@ import java.util.List;
 import taskmasters.hebi525.taskmastersapp.fragments.GroupsFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.incomelogs.LogListFragment;
 import taskmasters.hebi525.taskmastersapp.fragments.messages.ContactsFragment;
+import taskmasters.hebi525.taskmastersapp.fragments.messages.RecentMessagesFragment;
 
 public class MessagesActivity extends AppCompatActivity {
     private TabLayout tabLayout;
@@ -32,6 +33,7 @@ public class MessagesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Recent Messages");
 
         tabLayout = (TabLayout)findViewById(R.id.messages_tablayout);
         viewPager = (ViewPager)findViewById(R.id.messages_viewpager);
@@ -62,12 +64,32 @@ public class MessagesActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(android.R.drawable.ic_btn_speak_now);
         tabLayout.getTabAt(1).setIcon(android.R.drawable.ic_btn_speak_now);
         tabLayout.getTabAt(2).setIcon(android.R.drawable.ic_btn_speak_now);
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()){
+                    case 0: getSupportActionBar().setTitle("Recent Messages");break;
+                    case 1: getSupportActionBar().setTitle("Contacts");break;
+                    case 2: getSupportActionBar().setTitle("Groups");break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     //function to initialise view pager
     private void initViewPager(){
         MyViewPagerAdapter adapter = new MyViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(LogListFragment.newInstance(), "");
+        adapter.addFragment(RecentMessagesFragment.newInstance(), "");
         adapter.addFragment(ContactsFragment.newInstance(), "");
         adapter.addFragment(GroupsFragment.newInstance(), "");
         viewPager.setAdapter(adapter);
